@@ -1,0 +1,5 @@
+{
+    "plantuml.jarArgs": [
+        "-RELATIVE_INCLUDE= ../lib/C4-PlantUML"
+    ],
+}
