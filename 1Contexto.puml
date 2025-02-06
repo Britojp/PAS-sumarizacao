@@ -1,0 +1,25 @@
+@startuml Contexto Summary
+/' !include <C4/C4_Context.puml> '/
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+AddRelTag("async", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=DashedLine())
+AddRelTag("sync/async", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=DottedLine())
+SHOW_PERSON_OUTLINE()
+
+title Diagrama de Contexto do Sistema de Sumarização
+
+Person(usuario, "Usuário", "Usuário que usa o sistema para facilitar a análise de videos.")
+System(sistema_sumario, "Sistema de sumarização de video", "Analisa um video e gera um sumário textual.")
+
+System_Ext(input, "Plataformas digitais,", "Input de videos.")
+System_Ext(database, "Banco de dados", "Armazena os videos e seus respectivos sumários.")
+System_Ext(api_llm, "API de LLM", "Provedor da LLM utilizada pelo sistema.")
+
+Rel(sistema_sumario, usuario, "Envia sumários")
+Rel(input, sistema_sumario, "Envia os videos")
+Rel(sistema_sumario, api_llm, "Utiliza para a análise")
+Rel(sistema_sumario, database, "Utiliza para armazenamento")
+
+SHOW_LEGEND()
+
+@enduml
