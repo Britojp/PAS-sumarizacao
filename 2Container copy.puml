@@ -14,7 +14,7 @@ Person(usuario, "Usuário", "Usuário que usa o sistema para facilitar a anális
 System_Boundary(sistema_sumario, "[Container] Sistema de sumarização de video") {
     Container(aplicacao_web, "Aplicação Web", "","Aplicação web")
     Container(analise_frame, "Análise de frame", "", "Análise dos frames do video recebido")
-    Container(analise_audio, "Análise de audio", "", "Análise dos audio do video recebido")
+    Container(analise_audio, "Análise de audio", "", "Análise dos audio do video recebido") /' vai mudar '/
     Container(analise_texto, "Análise de texto", "", "Análise e sumarização dos textos")
 }
 
