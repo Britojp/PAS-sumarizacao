@@ -1,0 +1,55 @@
+@startuml Componentes Sistema de Sumarização
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+AddRelTag("async", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=DashedLine())
+AddRelTag("sync", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=SolidLine())
+
+LAYOUT_LANDSCAPE()
+
+title Diagrama de Componentes do Sistema de Sumarização
+
+Person(usuario, "Usuário", "Usuário que interage com o sistema para visualizar sumários de vídeo.")
+
+System_Boundary(sistema_sumario, "Sistema de Sumarização de Vídeo") {
+    Container(aplicacao_web, "Aplicação Web", "Interface do usuário e API para interações.") {
+        Component(ui, "Interface do Usuário (UI)", "Interface gráfica para interação com o sistema.")
+        Component(api_rest, "Expõe endpoints para comunicação com o backend.")
+        Component(autenticacao, "Módulo de Autenticação", "Gerencia autenticação e autorização de usuários.")
+    }
+
+    Container(processador_video, "Processador de Vídeo", "Processamento de vídeos para extração de informações.") {
+        Component(upload_video, "Módulo de Upload de Vídeo",  "Gerencia o upload e armazenamento temporário dos vídeos.")
+        Component(extrator_frames, "Serviço de Extração de Frames", "Extrai quadros dos vídeos para análise.")
+        Component(extrator_audio, "Serviço de Extração de Áudio",  "Extrai o áudio do vídeo para transcrição.")
+        Component(orquestrador, "Orquestrador de Processamento",  "Coordena o fluxo de processamento dos vídeos.")
+    }
+
+    Container(analise_texto, "Análise de Texto", "Python", "Realiza a sumarização textual dos vídeos.") {
+        Component(preprocessamento, "Módulo de Pré-processamento de Texto", "Transcrição dos frames selecionados")
+        Component(api_llm, "Integração com API de LLM", "Envia textos para sumarização utilizando LLM.")
+        Component(sumarizador, "Sumarizador de Texto", "Gera sumários a partir dos textos processados.")
+    }
+
+    ContainerDb(banco_dados, "Banco de Dados", "Armazena vídeos, sumários.")
+}
+
+' Relacionamentos entre componentes
+Rel(usuario, ui, "Interage com")
+Rel(ui, api_rest, "Faz requisições")
+Rel(api_rest, autenticacao, "Verifica autenticação")
+Rel(api_rest, upload_video, "Envia vídeos para processamento", "sync")
+Rel(upload_video, orquestrador, "Orquestra o processamento", "async")
+Rel(orquestrador, extrator_frames, "Envia para extração de frames", "async")
+Rel(orquestrador, extrator_audio, "Envia para extração de áudio", "async")
+Rel(extrator_audio, api_llm, "Envia áudio para transcrição", "async")
+Rel(extrator_frames, preprocessamento, "Fornece dados visuais", "sync")
+Rel(preprocessamento, sumarizador, "Envia texto processado", "sync")
+Rel(sumarizador, banco_dados, "Armazena sumário gerado", "sync")
+Rel(api_llm, sumarizador, "Envia transcrição para sumarização", "sync")
+Rel(banco_dados, api_rest, "Consulta sumários e vídeos", "sync")
+
+SHOW_LEGEND()
+
+
+@enduml
