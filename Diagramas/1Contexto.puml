@@ -15,7 +15,7 @@ System_Ext(input, "Plataformas digitais", "Input de videos.")
 /' System_Ext(database, "Banco de dados", "Armazena os videos e seus respectivos sumários.") '/
 /' System_Ext(api_llm, "API de LLM", "Provedor da LLM utilizada pelo sistema.") '/
 
-Rel(sistema_sumario, usuario, "Envia sumários")
+Rel(usuario, sistema_sumario, "Interage com")
 Rel(input, sistema_sumario, "Envia os videos")
 /' Rel(sistema_sumario, api_llm, "Utiliza para a análise") '/
 /' Rel(sistema_sumario, database, "Utiliza para armazenamento") '/
