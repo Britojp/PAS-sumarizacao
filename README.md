@@ -5,7 +5,7 @@
 
 ## Diagramas C4 do projeto
 ### Diagrama de Contexto
-![alt text](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/1ContextoNew.png)  
+![alt text](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/1Contextos.png)  
 [Código utilizado](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/1Contexto.puml)
 ### Diagrama de Container
 ![alt text](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/2Container.png)  
