@@ -1,7 +1,10 @@
 # Sumarização automática de vídeos
 ## Introdução
-  Com a imensa quantidade de vídeos disponíveis em plataformas digitais, é humanamente impossível dos usuários acessarem, consumirem e analisarem todo conteúdo gerado e armazenado. Por isso, necessitamos da utilização de uma tecnologia capaz de fazer essa extração e resumo de informação. Originando o projeto atual, o qual busca utilizar processamento de técnicas avançadas de visão computacional e linguagem natural (NLP) para gerar a descrição e sumarização do conteúdo desses vídeos.  
-  O nosso objetivo é desenvolver um sistema capaz de anaalisar os vídeos, identificando cenas e eventos relevantes, eventualmente gerando descrições textuais que sumarizam o video com qualidade comparável a resumos manuais. Para isso, combinaremos o uso dos modelos mencionados e uso dos dados visuais e auditivos dos vídeos recebidos, auxiliando a criação automática de um sumário descritivo e coerente.  
+  De acordo com um levantamento realizado pela empresa DOMO no ano de 2024 no infográfico **"Data Never Sleeps 12.0"**, mais de 5 bilhões de pessoas no mundo tem acesso à internet. Por minuto, cerca de 16 mil vídeos são adicionados por usuários à plataforma TikTok e 138.9 milhões de reels são executados no Facebook e Instagram. Com quantidades cada vez maiores de vídeos em plataformas digitais, torna-se inviável consumir a todo o conteúdo organicamente para gerar descrições ou resumos. Deste modo, o objetivo desse projeto é criar um sistema que, utilizando técnicas de visão computacional e processamento de linguagem natural combinadas à IA generativa, crie sumários descritivos e coerentes baseados tanto na análise dos elementos visuais importantes quanto na análise do áudio de vídeos em plataformas digitais.
+
+Referências Bibliográficas:
+https://www.domo.com/learn/infographic/data-never-sleeps-12 - acesso em 10/02/2025 às 11:35
+https://www.businesswire.com/news/home/20241218637346/en/ - acesso em 10/02/2025 às 11:35  
 
 ## Diagramas C4 do projeto
 ### Diagrama de Contexto
