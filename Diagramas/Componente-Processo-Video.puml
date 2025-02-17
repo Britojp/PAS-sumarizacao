@@ -5,17 +5,19 @@
 AddRelTag("async", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=DashedLine())
 AddRelTag("sync", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=SolidLine())
 
-LAYOUT_LANDSCAPE()
+SHOW_PERSON_PORTRAIT()
+LAYOUT_LANDSCAPE()  
 
 title Diagrama de Componentes do Sistema de Sumarização
 
 Person(usuario, "Usuário", "Usuário que interage com o sistema para visualizar sumários de vídeo.")
+System_Ext(input, "Plataformas digitais", "Input de videos.")
 
 System_Boundary(sistema_sumario, "Sistema de Sumarização de Vídeo") {
     Container(aplicacao_web, "Aplicação Web", "Interface do usuário e API para interações.") {
         Component(ui, "Interface do Usuário (UI)", "Interface gráfica para interação com o sistema.")
         Component(api_rest, "Expõe endpoints para comunicação com o backend.")
-        Component(autenticacao, "Módulo de Autenticação", "Gerencia autenticação e autorização de usuários.")
+        Component(autenticacao, "Serviço de Autenticação", "Gerencia autenticação e autorização de usuários.")
     }
 
     Container(processador_video, "Processador de Vídeo", "Processamento de vídeos para extração de informações.") {
@@ -26,8 +28,8 @@ System_Boundary(sistema_sumario, "Sistema de Sumarização de Vídeo") {
     }
 
     Container(analise_texto, "Análise de Texto", "Python", "Realiza a sumarização textual dos vídeos.") {
-        Component(preprocessamento, "Módulo de Pré-processamento de Texto", "Transcrição dos frames selecionados")
-        Component(api_llm, "Integração com API de LLM", "Envia textos para sumarização utilizando LLM.")
+        Component(preprocessamento, "Uso de Google Cloud Vision API", "Transcrição dos frames selecionados")
+        Component(api_llm, "Uso de Google's Speech-to-Text API", "Envia textos para sumarização utilizando LLM.")
         Component(sumarizador, "Sumarizador de Texto", "Gera sumários a partir dos textos processados.")
     }
 
@@ -35,19 +37,29 @@ System_Boundary(sistema_sumario, "Sistema de Sumarização de Vídeo") {
 }
 
 ' Relacionamentos entre componentes
+/' Input/Output '/
 Rel(usuario, ui, "Interage com")
+Rel(input, api_rest, "Envia os vídeos")
+
+/' Aplicação web '/
 Rel(ui, api_rest, "Faz requisições")
 Rel(api_rest, autenticacao, "Verifica autenticação")
-Rel(api_rest, upload_video, "Envia vídeos para processamento", "sync")
-Rel(upload_video, orquestrador, "Orquestra o processamento", "async")
-Rel(orquestrador, extrator_frames, "Envia para extração de frames", "async")
-Rel(orquestrador, extrator_audio, "Envia para extração de áudio", "async")
-Rel(extrator_audio, api_llm, "Envia áudio para transcrição", "async")
-Rel(extrator_frames, preprocessamento, "Fornece dados visuais", "sync")
-Rel(preprocessamento, sumarizador, "Envia texto processado", "sync")
-Rel(sumarizador, banco_dados, "Armazena sumário gerado", "sync")
-Rel(api_llm, sumarizador, "Envia transcrição para sumarização", "sync")
-Rel(banco_dados, api_rest, "Consulta sumários e vídeos", "sync")
+Rel(api_rest, upload_video, "Envia vídeos para processamento", "sync", $tags=sync)
+
+/' Video '/
+Rel(upload_video, orquestrador, "Orquestra o processamento", "async", $tags=async)
+Rel(orquestrador, extrator_frames, "Envia para extração de frames", "async", $tags=async)
+Rel(orquestrador, extrator_audio, "Envia para extração de áudio", "async", $tags=async)
+Rel(extrator_audio, api_llm, "Envia áudio para transcrição", "async", $tags=async)
+Rel(extrator_frames, preprocessamento, "Fornece dados visuais", "sync", $tags=sync)
+
+/' Texto '/
+Rel(preprocessamento, sumarizador, "Envia texto processado", "sync", $tags=sync)
+Rel(api_llm, sumarizador, "Envia transcrição para sumarização", "sync", $tags=sync)
+
+/' Banco de dados '/
+Rel(sumarizador, banco_dados, "Armazena sumário gerado", "sync", $tags=sync)
+Rel(banco_dados, api_rest, "Consulta sumários e vídeos", "sync", $tags=sync)
 
 SHOW_LEGEND()
 
