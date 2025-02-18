@@ -6,6 +6,11 @@ Referências Bibliográficas:
 https://www.domo.com/learn/infographic/data-never-sleeps-12 - acesso em 10/02/2025 às 11:35
 https://www.businesswire.com/news/home/20241218637346/en/ - acesso em 10/02/2025 às 11:35  
 
+
+## Dataset escolhido
+KUNWAR DEEPAK. (August 2020) Youtube Trending Videos Statistics. Disponível em: <https://www.kaggle.com/datasets/kunwardeepak/youtube-trending-august-2020>. Acesso em: 18 fev. 2025.
+
+
 ## Diagramas C4 do projeto
 ### Diagrama de Contexto
 ![alt text](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/1Contexto.png)  
