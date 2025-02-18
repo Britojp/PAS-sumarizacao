@@ -1,0 +1,1 @@
+O relatório da disciplina foi escrito no modelo SBC 2017 para artigos. A ferramenta utilizada foi o Overleaf. O relatório poe ser acessado através do link: https://www.overleaf.com/read/vjxhvmsdkqds#c68dcf
