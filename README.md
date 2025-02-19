@@ -19,5 +19,5 @@ KUNWAR DEEPAK. (August 2020) Youtube Trending Videos Statistics. Disponível em:
 ![alt text](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/2Container.png)  
 [Código utilizado](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/2Container.puml)
 ### Diagrama de Componente
-![alt text](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/Componente-Processo-Video.png)  
+![alt text](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/Componente-Processo-Video.jpg)  
 [Código utilizado](https://github.com/Britojp/PAS-sumarizacao/blob/main/Diagramas/Componente-Processo-Video.puml)
