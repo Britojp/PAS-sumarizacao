@@ -5,8 +5,10 @@
 AddRelTag("async", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=DashedLine())
 AddRelTag("sync", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=SolidLine())
 
+
 SHOW_PERSON_PORTRAIT()
-LAYOUT_LANDSCAPE()  
+LAYOUT_LANDSCAPE()  /' Opcional fica em retrato '/
+/' LAYOUT_LEFT_RIGHT() '/
 
 title Diagrama de Componentes do Sistema de Sumarização
 
@@ -28,8 +30,8 @@ System_Boundary(sistema_sumario, "Sistema de Sumarização de Vídeo") {
     }
 
     Container(analise_texto, "Análise de Texto", "Python", "Realiza a sumarização textual dos vídeos.") {
-        Component(preprocessamento, "Uso de Google Cloud Vision API", "Transcrição dos frames selecionados")
-        Component(api_llm, "Uso de Google's Speech-to-Text API", "Envia textos para sumarização utilizando LLM.")
+        Component(preprocessamento, "Uso da BLIP API", "Transcrição dos frames selecionados")
+        Component(api_llm, "Uso do Whisper API", "Envia textos para sumarização utilizando LLM.")
         Component(sumarizador, "Sumarizador de Texto", "Gera sumários a partir dos textos processados.")
     }
 
